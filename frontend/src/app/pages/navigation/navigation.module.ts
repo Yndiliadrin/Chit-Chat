@@ -10,6 +10,9 @@ import { NavigationComponent } from './navigation.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    NavigationComponent
   ]
 })
 export class NavigationModule { }

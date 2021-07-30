@@ -10,6 +10,9 @@ import { SidebarComponent } from './sidebar.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    SidebarComponent
   ]
 })
 export class SidebarModule { }

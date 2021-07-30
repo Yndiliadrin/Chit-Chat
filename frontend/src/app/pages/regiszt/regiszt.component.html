@@ -1,1 +1,58 @@
 <p>regiszt works!</p>
+<div class="centering">
+  <mat-card class="log-card">
+    <form [formGroup]="form" (ngSubmit)="regiszt()">
+      <h3>Bejelentkezés</h3>
+      <mat-card id="alertCard" class="alert" *ngIf="alertMessage">
+        {{alertMessage}}
+      </mat-card>
+      <mat-form-field class="max-width">
+        <mat-label>E-mail</mat-label>
+        <input type="email" matInput placeholder="valami@valami.hu" formControlName="email" required>
+      </mat-form-field>
+      <br>
+      <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+        Érvénytelen e-mail cím
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('required') && form.controls['email']?.touched">
+        Email cím megadása <strong>kötelező</strong>
+      </mat-error>
+
+
+      <mat-form-field class="half-width">
+        <mat-label>Vezetéknév</mat-label>
+        <input type="text" matInput placeholder="Kiss" formControlName="f_name" required>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <mat-label>Keresztnév</mat-label>
+        <input type="text" matInput placeholder="Apachehelikopter" formControlName="s_name" required>
+      </mat-form-field>
+
+
+      <mat-form-field class="half-width">
+        <mat-label>Jelszó</mat-label>
+        <input type="password" matInput placeholder="********" formControlName="password" required>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <mat-label>Jelszó megerősítése</mat-label>
+        <input type="password" matInput placeholder="********" formControlName="confirmPassword" required>
+      </mat-form-field>
+      <br>
+      <mat-error *ngIf="!matchingPasswords() && !(form.controls['password'].hasError('pattern'))">
+        A két jelszó nem egyezik meg!
+      </mat-error>
+      <mat-error *ngIf="form.controls['password'].hasError('required') && form.controls['password']?.touched">
+        Jelszó megadása kötelező!
+      </mat-error>
+      <br>
+      <mat-error *ngIf="form.controls['password'].hasError('pattern')">
+        Jelszó tartalmazni kell legalább egy nagybetűt és egy számot (min. 8 karakter hosszúságban)!
+      </mat-error>
+
+      <br>
+      <button type="submit" mat-raised-button color="primary" class="max-width"
+        [disabled]="form.invalid">REGISZTRÁCIÓ</button>
+    </form>
+    <button mat-button color="accent" (click)="navTo('/login')" class="max-width">Bejelentkezés</button>
+  </mat-card>
+</div>

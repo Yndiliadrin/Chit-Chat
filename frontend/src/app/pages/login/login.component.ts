@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup = new FormGroup ({
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', [Validators.minLength(8), Validators.required])
+  });
 
-  ngOnInit(): void {
+  alertMessage = '';
+  alertsList: any = {
+    user: () => 'Hibás E-mail cím vagy jelszó.',
+    server: () => 'A szolgáltatás nem elérhető.',
+    false: () => ''
+  };
+
+  hide = true;
+
+  @HostListener('document:keydown.enter') onKeydownHandler() {
+    this.login();
   }
 
+
+  constructor(
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+
+  }
+
+  navTo(url: string): void {
+    this.router.navigateByUrl(url);
+  }
+
+  login(): void {
+    console.log("Login");
+
+  }
 }
