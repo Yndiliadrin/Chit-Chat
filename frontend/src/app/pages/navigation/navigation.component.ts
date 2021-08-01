@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ROOMS } from 'src/app/shared/database/room.database';
 
 @Component({
   selector: 'app-navigation',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  rooms = ROOMS;
 
   constructor() { }
 

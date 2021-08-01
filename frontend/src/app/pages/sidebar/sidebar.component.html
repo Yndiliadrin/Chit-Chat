@@ -1,1 +1,7 @@
-<p>sidebar works!</p>
+<div class="vertical-toolbar">
+  <span *ngFor="let item of rooms">
+    <button mat-button class="room-selector">
+      {{item.id}} - {{item.name}}
+    </button>
+  </span>
+</div>

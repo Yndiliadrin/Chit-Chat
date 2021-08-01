@@ -1,0 +1,13 @@
+.vertical-toolbar {
+  position: fixed;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background-color: white;
+
+  .room-selector {
+    width: 100%;
+    background-color: beige;
+    border: 1.5px solid gold;
+  }
+}

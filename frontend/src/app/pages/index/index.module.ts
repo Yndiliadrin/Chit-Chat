@@ -1,3 +1,5 @@
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IndexComponent } from './index.component';
@@ -19,7 +21,9 @@ import { IndexRoutingModule } from './index.-routing.module';
     MatCardModule,
     MatRippleModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   exports: [ IndexComponent ]
 
