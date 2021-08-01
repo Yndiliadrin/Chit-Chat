@@ -1,5 +1,6 @@
 import { ROOMS } from './../../shared/database/room.database';
 import { Component, OnInit } from '@angular/core';
+import { Emoji } from 'src/app/shared/database/emoji.database';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   rooms = ROOMS;
+  emo = Emoji;
 
   constructor() { }
 
