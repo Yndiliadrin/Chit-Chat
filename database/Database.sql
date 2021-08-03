@@ -2,9 +2,9 @@ DROP DATABASE IF EXISTS ccdb;
 DROP TABLE IF EXISTS ccdb.User;
 DROP TABLE IF EXISTS ccdb.Message;
 DROP TABLE IF EXISTS ccdb.Room;
-CREATE USER ccadmin IDENTIFIED BY 'password';
+-- CREATE USER ccadmin IDENTIFIED BY 'password';
 CREATE DATABASE ccdb;
-CREATE TABLE User (
+CREATE TABLE ccdb.User (
     id          VARCHAR(36)     NOT NULL,
     username    VARCHAR(32),
     pass        VARCHAR(255)    NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE User (
     UNIQUE      (username)
 );
 
-CREATE TABLE Message (
+CREATE TABLE ccdb.Message (
     id          VARCHAR(36)     NOT NULL,
     sender      VARCHAR(36)     NOT NULL,
     receiver    VARCHAR(36)     NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE Message (
     FOREIGN KEY (receiver)      REFERENCES User(id)
 );
 
-CREATE Table Room (
+CREATE Table ccdb.Room (
     id          VARCHAR(36)     NOT NULL,
     PRIMARY KEY (id)
 );
