@@ -2,13 +2,13 @@
 <div class="centering">
   <mat-card class="log-card">
     <form [formGroup]="form" (ngSubmit)="regiszt()">
-      <h3>Bejelentkezés</h3>
+      <h3>Registration</h3>
       <mat-card id="alertCard" class="alert" *ngIf="alertMessage">
         {{alertMessage}}
       </mat-card>
       <mat-form-field class="max-width">
         <mat-label>E-mail</mat-label>
-        <input type="email" matInput placeholder="valami@valami.hu" formControlName="email" required>
+        <input type="email" matInput placeholder="smth@smth.hu" formControlName="email" required>
       </mat-form-field>
       <br>
       <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
@@ -19,22 +19,18 @@
       </mat-error>
 
 
-      <mat-form-field class="half-width">
-        <mat-label>Vezetéknév</mat-label>
-        <input type="text" matInput placeholder="Kiss" formControlName="f_name" required>
-      </mat-form-field>
-      <mat-form-field class="half-width">
-        <mat-label>Keresztnév</mat-label>
-        <input type="text" matInput placeholder="Apachehelikopter" formControlName="s_name" required>
+      <mat-form-field class="max-width">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput formControlName="u_name" required>
       </mat-form-field>
 
 
       <mat-form-field class="half-width">
-        <mat-label>Jelszó</mat-label>
+        <mat-label>Password</mat-label>
         <input type="password" matInput placeholder="********" formControlName="password" required>
       </mat-form-field>
       <mat-form-field class="half-width">
-        <mat-label>Jelszó megerősítése</mat-label>
+        <mat-label>Password-re</mat-label>
         <input type="password" matInput placeholder="********" formControlName="confirmPassword" required>
       </mat-form-field>
       <br>

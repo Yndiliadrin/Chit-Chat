@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 export class RegisztComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
-    f_name: new FormControl('', Validators.required),
-    s_name: new FormControl('', Validators.required),
+    u_name: new FormControl('', Validators.required),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')

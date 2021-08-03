@@ -1,16 +1,16 @@
 <div class="centering">
   <mat-card class="log-card">
     <form [formGroup]="form" (ngSubmit)="login()">
-      <h3>Bejelentkezés</h3>
+      <h3>Login</h3>
       <mat-card id="alertCard" class="alert" *ngIf="alertMessage">
         {{alertMessage}}
       </mat-card>
       <mat-form-field class="max-width">
         <mat-label>E-mail</mat-label>
-        <input type="email" matInput placeholder="valami@valami.hu" formControlName="email" required>
+        <input type="email" matInput placeholder="smth@smth.hu" formControlName="email" required>
       </mat-form-field>
       <mat-form-field class="max-width">
-        <mat-label>Jelszó</mat-label>
+        <mat-label>Password</mat-label>
         <input matInput placeholder="********" formControlName="password" required [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
