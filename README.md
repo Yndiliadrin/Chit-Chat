@@ -20,11 +20,14 @@ This is a basic chat application for learning purposes **only**! During the deve
 
 ---
 
+
 ## Diagrams
 
-<details><summary>Entity-Relation Diagram</summary>
+Entity-Relation Diagram
+![Entity-Relation Diagram v0.0.1](.documentation/CC_EK.svg)
+
+<details><summary>Ide kell még valami</summary>
 <p>
-itt lesz majd egy kép, asszem
 </p>
 </details>
 
