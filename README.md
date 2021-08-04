@@ -9,6 +9,17 @@ This is a basic chat application for learning purposes **only**! During the deve
 
 ---
 
+## Specificaiton
+* A user can:
+  * regist
+  * login
+  * read rooms
+  * read messages between him and other user
+  * send messages to rooms
+  * send messages to users
+
+---
+
 ## Diagrams
 
 <details><summary>Entity-Relation Diagram</summary>
