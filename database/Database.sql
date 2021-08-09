@@ -11,27 +11,32 @@ CREATE DATABASE ccdb;
 -- The privileges can use some fine tuneing
 
 CREATE TABLE ccdb.User (
-    id          VARCHAR(36)     NOT NULL,
+    uuid        VARCHAR(36)     NOT NULL,
     username    VARCHAR(32),
-    pass        VARCHAR(255)    NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE      (username)
+    password    VARCHAR(255)    NOT NULL,
+    email       VARCHAR(128)    NOT NULL,
+    is_admin    BOOLEAN         NOT NULL,
+    PRIMARY KEY (uuid),
+    UNIQUE      (username, email)
 );
 
+
+--The 'content' field can be a legit TEXT or an URL pointing to the image
 CREATE TABLE ccdb.Message (
-    id          VARCHAR(36)     NOT NULL,
+    uuid        VARCHAR(36)     NOT NULL,
     sender      VARCHAR(36)     NOT NULL,
     receiver    VARCHAR(36)     NOT NULL,
     type        VARCHAR(5)      NOT NULL,
-    content     TEXT            NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (sender)        REFERENCES User(id),
-    FOREIGN KEY (receiver)      REFERENCES User(id)
+    content     TEXT            NOT NULL, 
+    TIME        DATETIME        NOT NULL,
+    PRIMARY KEY (uuid),
+    FOREIGN KEY (sender)        REFERENCES User(uuid),
+    FOREIGN KEY (receiver)      REFERENCES User(uuid)
 );
 
 CREATE Table ccdb.Room (
-    id          VARCHAR(36)     NOT NULL,
-    PRIMARY KEY (id)
+    uuid        VARCHAR(36)     NOT NULL,
+    PRIMARY KEY (uuid)
 );
 
 
