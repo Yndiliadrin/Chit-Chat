@@ -1,6 +1,7 @@
 import { Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 import { Entity } from 'typeorm';
 
+
 @Entity({ name: 'Message', synchronize: false })
 export class Message {
   @PrimaryGeneratedColumn('uuid')

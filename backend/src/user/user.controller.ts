@@ -1,3 +1,7 @@
+/**
+ * This file contains the UserController class
+ * @module User
+ */
 import {
   Controller,
   Post,
@@ -13,8 +17,16 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
+/**
+ * @author Yndiliädrin
+ * @description This is the class which handle the userinteractions
+ */
 @Controller('user')
 export class UserController {
+  /**
+   * 
+   * @param service Objectifyed UserService
+   */
   constructor(private service: UserService) {}
 
   @Get()
