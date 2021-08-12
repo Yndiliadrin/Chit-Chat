@@ -9,14 +9,11 @@ export class MessageService {
     @InjectRepository(Message) private messageRepository: Repository<Message>,
   ) {}
 
-
   async getAll(): Promise<Message[]> {
-      return this.messageRepository.find();
+    return this.messageRepository.find();
   }
 
   async save(message: Message): Promise<Message> {
-    console.log(message);
-    
     return this.messageRepository.save(message);
   }
 }
