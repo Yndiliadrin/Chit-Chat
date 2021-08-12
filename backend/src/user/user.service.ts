@@ -1,4 +1,59 @@
+import { User } from './user.entity';
+import * as bcrypt from 'bcrypt';
+import { Session } from 'inspector';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { getManager, Repository } from 'typeorm';
 
 @Injectable()
-export class UserService {}
+export class UserService {
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
+
+  async getUsers(): Promise<User[]> {
+    console.log('Listing all user... ');
+
+    return await this.userRepository.find();
+  }
+
+  async getUser(_id: string): Promise<User> {
+    console.log('Getting user by ${_id} id');
+
+    const user = await getManager()
+      .createQueryBuilder(User, 'user')
+      .where('user.uuid = :id', { id: _id })
+      .getOne();
+    return user as User;
+  }
+
+  async createUser(user: User): Promise<User> {
+    const saltRounds = 10;
+    user.password = await new Promise((resolve, reject) => {
+      bcrypt.genSalt(saltRounds, (err, salt) => {
+        user.salt = salt;
+        if (err) reject(err);
+        bcrypt.hash(user.password, user.salt, (err, hash) => {
+          if (err) reject(err);
+          resolve(hash);
+        });
+      });
+    });
+    console.log(user);
+    return this.userRepository.save(user);
+  }
+
+  async deleteUser(_id: string): Promise<void> {
+    console.log('DELETING USER [ %s ]. . .', _id);
+
+    this.userRepository.delete(_id);
+  }
+
+  async loginUser(): Promise<Session> {
+    return new Session();
+  }
+
+  async uploadFile(file: string): Promise<void> {
+    console.log(file);
+  }
+}
