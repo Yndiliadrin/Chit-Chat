@@ -46,7 +46,6 @@ export class UserService {
         });
       });
     });
-    console.log(user);
     return this.userRepository.save(user);
   }
 
