@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './message/message.module';
+import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { MessageModule } from './message/message.module';
     }),
     UserModule,
     MessageModule,
+    RoomModule,
   ],
   controllers: [AppController],
   providers: [AppService],
