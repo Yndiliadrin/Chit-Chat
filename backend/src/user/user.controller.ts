@@ -12,10 +12,13 @@ import {
   ParseUUIDPipe,
   UploadedFile,
   UseInterceptors,
+  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { User } from './user.entity';
 import { UserService } from './user.service';
+import { Request } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 /**
  * @author Yndiliädrin
@@ -44,11 +47,10 @@ export class UserController {
     return this.service.createUser(user);
   }
 
+  @UseGuards(AuthGuard('local'))
   @Post('/login')
-  login() {
-    console.log("heyya");
-
-    return this.service.loginUser();
+  async login(@Request() req) {
+    return "";
   }
 
   @Post('/uploadImage')

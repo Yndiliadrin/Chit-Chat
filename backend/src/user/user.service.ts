@@ -17,9 +17,16 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async getUser(_id: string): Promise<User> {
-    console.log('Getting user by ${_id} id');
+  async findOne(_username: string): Promise<User | undefined> {
+    const user = await getManager()
+      .createQueryBuilder(User, 'user')
+      .where('user.username = :username', { username: _username })
+      .getOne();
 
+    return user as User;
+  }
+
+  async getUser(_id: string): Promise<User> {
     const user = await getManager()
       .createQueryBuilder(User, 'user')
       .where('user.uuid = :id', { id: _id })
@@ -44,8 +51,6 @@ export class UserService {
   }
 
   async deleteUser(_id: string): Promise<void> {
-    console.log('DELETING USER [ %s ]. . .', _id);
-
     this.userRepository.delete(_id);
   }
 
