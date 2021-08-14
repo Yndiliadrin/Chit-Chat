@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS ccdb.Message;
 DROP TABLE IF EXISTS ccdb.User;
+DROP TABLE IF EXISTS ccdb.Online;
 DROP TABLE IF EXISTS ccdb.Room;
 DROP DATABASE IF EXISTS ccdb;
 
@@ -37,6 +38,13 @@ CREATE TABLE ccdb.Message (
 CREATE Table ccdb.Room (
     uuid        VARCHAR(36)     NOT NULL,
     PRIMARY KEY (uuid)
+);
+
+-- This table contains the online userse uuid and their session id
+CREATE TABLE ccdb.Online (
+    session     VARCHAR(36)     NOT NULL,
+    userID      VARCHAR(36)     NOT NULL,
+    FOREIGN KEY (userID)        REFERENCES User(uuid)
 );
 
 
