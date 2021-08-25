@@ -1,5 +1,6 @@
 /**
  * This file contains the UserController class
+ * @author Yndiliädrin
  * @module User
  */
 import {
@@ -21,13 +22,11 @@ import { Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 /**
- * @author Yndiliädrin
  * @description This is the class which handle the userinteractions
  */
 @Controller('user')
 export class UserController {
   /**
-   * 
    * @param service Objectifyed UserService
    */
   constructor(private service: UserService) {}
@@ -50,7 +49,7 @@ export class UserController {
   @UseGuards(AuthGuard('local'))
   @Post('/login')
   async login(@Request() req) {
-    return "";
+    return '';
   }
 
   @Post('/uploadImage')
