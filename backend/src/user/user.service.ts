@@ -22,7 +22,8 @@ export class UserService {
       .createQueryBuilder(User, 'user')
       .where('user.username = :username', { username: _username })
       .getOne();
-
+    console.log(user);
+      
     return user as User;
   }
 

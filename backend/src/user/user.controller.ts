@@ -1,3 +1,4 @@
+import { LocalAuthGuard } from './../auth/local-auth.guard';
 /**
  * This file contains the UserController class
  * @author Yndiliädrin
@@ -19,7 +20,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { Request } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 
 /**
  * @description This is the class which handle the userinteractions
@@ -46,10 +46,10 @@ export class UserController {
     return this.service.createUser(user);
   }
 
-  @UseGuards(AuthGuard('local'))
-  @Post('/login')
+  @UseGuards(LocalAuthGuard)
+  @Post('/auth/login')
   async login(@Request() req) {
-    return '';
+    return req.user;
   }
 
   @Post('/uploadImage')
