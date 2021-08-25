@@ -14,11 +14,8 @@ export class AuthService {
     console.log('DEBUG: auth.service@validateUser()');
 
     const user = await this.userService.findOne(username);
-    bcrypt.compare(password, user.password, function (err, result) {
-      console.log(result);
-      return true;
-    });
-    return null;
+    
+    return await bcrypt.compare(password, user.password);
   }
 
   async login(user: any) { 

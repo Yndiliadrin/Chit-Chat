@@ -18,10 +18,19 @@ export class UserService {
   }
 
   async findOne(_username: string): Promise<User | undefined> {
-    const user = await getManager()
+    console.log("DEBUG: user.service@findOnde(%s)", _username);
+   
+    var user = undefined
+
+    try {
+      user = await getManager()
       .createQueryBuilder(User, 'user')
       .where('user.username = :username', { username: _username })
-      .getOne();
+      .getOne();      
+    } catch(err) {
+      console.log(err);
+    }
+    
     console.log(user);
       
     return user as User;
