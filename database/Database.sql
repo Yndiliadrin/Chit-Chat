@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS ccdb.Online;
 DROP TABLE IF EXISTS ccdb.Message;
 DROP TABLE IF EXISTS ccdb.User;
 DROP TABLE IF EXISTS ccdb.Online;
@@ -14,6 +15,7 @@ CREATE DATABASE ccdb;
 CREATE TABLE ccdb.User (
     uuid        VARCHAR(36)     NOT NULL,
     username    VARCHAR(32),
+    salt        VARCHAR(36)     NOT NULL,
     password    VARCHAR(255)    NOT NULL,
     email       VARCHAR(128)    NOT NULL,
     is_admin    BOOLEAN         NOT NULL,
