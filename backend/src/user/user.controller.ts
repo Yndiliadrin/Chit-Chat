@@ -1,4 +1,3 @@
-import { forwardRef } from '@nestjs/common';
 /**
  * This file contains the UserController class
  * @author Yndiliädrin
@@ -22,7 +21,7 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import { Request } from '@nestjs/common';
 import { AuthService } from './../auth/auth.service';
-import { LocalAuthGuard } from './../auth/local-auth.guard';
+import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
 
 /**
  * @description This is the class which handle the userinteractions
