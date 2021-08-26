@@ -2,10 +2,11 @@ import { Controller, Get, Param, StreamableFile } from '@nestjs/common';
 import { createReadStream } from 'graceful-fs';
 import { join } from 'path';
 import { AppService } from './app.service';
+import { AuthService } from './auth/auth.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService,) {}
 
   @Get()
   getHello(): string {

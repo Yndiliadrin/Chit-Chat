@@ -1,3 +1,4 @@
+import { forwardRef } from '@nestjs/common';
 /**
  * This file contains the UserController class
  * @author Yndiliädrin
@@ -14,7 +15,6 @@ import {
   UploadedFile,
   UseInterceptors,
   UseGuards,
-  forwardRef,
   Inject,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -33,7 +33,10 @@ export class UserController {
    * @param service Objectifyed UserService
    * @param authService Objectifyed Authservice
    */
-  constructor(private service: UserService) {}
+  constructor(
+    private service: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Get()
   getAll() {
@@ -54,8 +57,7 @@ export class UserController {
   @Post('/auth/login')
   async login(@Request() req) {
     console.log('==================================');
-
-    return req.user;
+    return this.authService.login(req.user);
   }
 
   @Post('/uploadImage')

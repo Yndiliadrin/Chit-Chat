@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -21,9 +22,9 @@ import { ConfigModule } from '@nestjs/config';
       database: 'ccdb',
       autoLoadEntities: true,
     }),
+    AuthModule,
     UserModule,
     MessageModule,
-    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
