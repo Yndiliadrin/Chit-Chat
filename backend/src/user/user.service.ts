@@ -4,11 +4,13 @@ import { Session } from 'inspector';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getManager, Repository } from 'typeorm';
+import { Online } from './online.entity';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(Online) private onlineRepository: Repository<Online>
   ) {}
 
   async getUsers(): Promise<User[]> {
@@ -69,5 +71,13 @@ export class UserService {
 
   async uploadFile(file: string): Promise<void> {
     console.log(file);
+  }
+
+  async updateOnlineStatus(user: any) {
+    const onlineStatus = {
+      session: "yx",
+      userID: user.uuid
+    }
+    return this.onlineRepository.save(onlineStatus);
   }
 }

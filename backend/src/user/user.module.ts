@@ -1,3 +1,4 @@
+import { Online } from './online.entity';
 import { AuthModule } from './../auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { forwardRef, Module } from '@nestjs/common';
@@ -6,7 +7,7 @@ import { UserController } from './user.controller';
 import { User } from './user.entity';
 
 @Module({
-  imports: [forwardRef(() => AuthModule), TypeOrmModule.forFeature([User])],
+  imports: [forwardRef(() => AuthModule), TypeOrmModule.forFeature([User, Online])],
   providers: [UserService],
   controllers: [UserController],
   exports: [UserService],

@@ -55,6 +55,9 @@ export class UserController {
   @UseGuards(LocalAuthGuard)
   @Post('/auth/login')
   async login(@Request() req) {
+    if (req.user) {
+      this.service.updateOnlineStatus(req.user);
+    }
     console.log('==================================');
     return this.authService.login(req.user);
   }
