@@ -15,12 +15,16 @@ export class AuthService {
 
     const user = await this.userService.findOne(username);
     
-    return await bcrypt.compare(password, user.password);
+    return (await bcrypt.compare(password, user.password) ? user : null);
   }
 
-  async login(user: any) { 
+  async login(user: any) {
+    console.log("DEBUG: auth.service@login("+user+")");
+    
     const payload = {username: user.username, sub:user.uuid};
     return {
+      login_at: new Date(),
+      username: user.username,
       acces_token: this.jwtService.sign(payload)
     };
   }
