@@ -1,14 +1,16 @@
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { Session } from 'inspector';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getManager, Repository } from 'typeorm';
+import { Online } from './entities/online.entity';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(Online) private onlineRepository: Repository<Online>
   ) {}
 
   async getUsers(): Promise<User[]> {
@@ -17,9 +19,26 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async getUser(_id: string): Promise<User> {
-    console.log('Getting user by ${_id} id');
+  async findOne(_username: string): Promise<User | undefined> {
+    console.log("DEBUG: user.service@findOnde(%s)", _username);
+   
+    var user = undefined
 
+    try {
+      user = await getManager()
+      .createQueryBuilder(User, 'user')
+      .where('user.username = :username', { username: _username })
+      .getOne();      
+    } catch(err) {
+      console.log(err);
+    }
+    
+    console.log(user);
+      
+    return user as User;
+  }
+
+  async getUser(_id: string): Promise<User> {
     const user = await getManager()
       .createQueryBuilder(User, 'user')
       .where('user.uuid = :id', { id: _id })
@@ -39,13 +58,10 @@ export class UserService {
         });
       });
     });
-    console.log(user);
     return this.userRepository.save(user);
   }
 
   async deleteUser(_id: string): Promise<void> {
-    console.log('DELETING USER [ %s ]. . .', _id);
-
     this.userRepository.delete(_id);
   }
 
@@ -55,5 +71,13 @@ export class UserService {
 
   async uploadFile(file: string): Promise<void> {
     console.log(file);
+  }
+
+  async updateOnlineStatus(user: any) {
+    const onlineStatus = {
+      session: "yx",
+      userID: user.uuid
+    }
+    return this.onlineRepository.save(onlineStatus);
   }
 }

@@ -1,5 +1,6 @@
 /**
  * This file contains the UserController class
+ * @author Yndiliädrin
  * @module User
  */
 import {
@@ -12,22 +13,29 @@ import {
   ParseUUIDPipe,
   UploadedFile,
   UseInterceptors,
+  UseGuards,
+  Inject,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { UserService } from './user.service';
+import { Request } from '@nestjs/common';
+import { AuthService } from './../auth/auth.service';
+import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
 
 /**
- * @author Yndiliädrin
  * @description This is the class which handle the userinteractions
  */
 @Controller('user')
 export class UserController {
   /**
-   * 
    * @param service Objectifyed UserService
+   * @param authService Objectifyed Authservice
    */
-  constructor(private service: UserService) {}
+  constructor(
+    private service: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Get()
   getAll() {
@@ -44,11 +52,14 @@ export class UserController {
     return this.service.createUser(user);
   }
 
-  @Post('/login')
-  login() {
-    console.log("heyya");
-
-    return this.service.loginUser();
+  @UseGuards(LocalAuthGuard)
+  @Post('/auth/login')
+  async login(@Request() req) {
+    if (req.user) {
+      this.service.updateOnlineStatus(req.user);
+    }
+    console.log('==================================');
+    return this.authService.login(req.user);
   }
 
   @Post('/uploadImage')

@@ -5,9 +5,14 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './message/message.module';
 import { RoomModule } from './room/room.module';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -17,6 +22,7 @@ import { RoomModule } from './room/room.module';
       database: 'ccdb',
       autoLoadEntities: true,
     }),
+    AuthModule,
     UserModule,
     MessageModule,
     RoomModule,
