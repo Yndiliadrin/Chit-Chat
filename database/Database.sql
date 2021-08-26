@@ -44,8 +44,10 @@ CREATE Table ccdb.Room (
 
 -- This table contains the online userse uuid and their session id
 CREATE TABLE ccdb.Online (
+    id          VARCHAR(36)     NOT NULL,
     session     VARCHAR(36)     NOT NULL,
     userID      VARCHAR(36)     NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (userID)        REFERENCES User(uuid)
 );
 
