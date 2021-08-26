@@ -17,7 +17,7 @@ import {
   Inject,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 import { Request } from '@nestjs/common';
 import { AuthService } from './../auth/auth.service';

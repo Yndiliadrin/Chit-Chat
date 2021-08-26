@@ -1,10 +1,10 @@
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { Session } from 'inspector';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getManager, Repository } from 'typeorm';
-import { Online } from './online.entity';
+import { Online } from './entities/online.entity';
 
 @Injectable()
 export class UserService {
