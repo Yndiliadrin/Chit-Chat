@@ -25,7 +25,7 @@ export class AuthService {
   async login(user: any) {
     console.log("DEBUG: auth.service@login("+user+")");
     
-    const payload = {username: user.username, sub:user.uuid};
+    const payload = {username: user.username, sub:user.uuid, admin: user.is_admin};
     return {
       login_at: new Date(),
       username: user.username,
