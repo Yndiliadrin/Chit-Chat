@@ -10,7 +10,7 @@ This is a basic chat application for learning purposes **only**! During the deve
 
 ---
 
-## Specificaiton
+## Specification
 * A user can:
   * regist
   * login
